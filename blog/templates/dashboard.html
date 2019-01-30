@@ -1,0 +1,348 @@
+{% load static %}
+{% load mathfilters %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Dashboard 3</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="{% static 'css/font-face.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/font-awesome-4.7/css/font-awesome.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/font-awesome-5/css/fontawesome-all.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/mdi-font/css/material-design-iconic-font.min.css'%}" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="{% static 'vendor/bootstrap-4.1/bootstrap.min.css'%}" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="{% static 'vendor/animsition/animsition.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/wow/animate.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/css-hamburgers/hamburgers.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/slick/slick.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/select2/select2.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css'%}" rel="stylesheet" media="all">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- Main CSS-->
+    <link href="{% static 'css/theme.css'%}" rel="stylesheet" media="all">
+
+
+</head>
+<script>
+    function percentChart2() {
+    var ctx = document.getElementById("percent-chart2");
+    var d1 = Math.round(document.getElementById("d1").value);
+    var d2 = 100 - d1;
+    if (ctx) {
+      ctx.height = 209;
+      var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          datasets: [
+            {
+              label: "My First dataset",
+              data: [d2,d1],
+              backgroundColor: [
+                '#fa4251',
+                '#00b5e9'
+              ],
+              hoverBackgroundColor: [
+                '#fa4251',
+                '#00b5e9'
+              ],
+              borderWidth: [
+                0, 0
+              ],
+              hoverBorderColor: [
+                'transparent',
+                'transparent'
+              ]
+            }
+          ],
+          labels: [
+            'Consume',
+            'Remain'
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          responsive: true,
+          cutoutPercentage: 87,
+          animation: {
+            animateScale: true,
+            animateRotate: true
+          },
+          legend: {
+            display: false,
+            position: 'bottom',
+            labels: {
+              fontSize: 14,
+              fontFamily: "Poppins,sans-serif"
+            }
+
+          },
+          tooltips: {
+            titleFontFamily: "Poppins",
+            xPadding: 15,
+            yPadding: 10,
+            caretPadding: 0,
+            bodyFontSize: 16,
+          }
+        }
+      });
+    }
+
+  }
+
+window.onload = percentChart2;     
+</script>
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- HEADER DESKTOP-->
+        
+        <!-- END HEADER DESKTOP-->
+
+        <!-- HEADER MOBILE-->
+        
+        <!-- END HEADER MOBILE -->
+
+        <!-- PAGE CONTENT-->
+        <div class="page-content--bgf7">
+            <!-- BREADCRUMB-->
+        
+            <!-- END BREADCRUMB-->
+
+            <!-- WELCOME-->
+            <section class="welcome p-t-10">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="title-4">
+                                <span>{{ username }}</span>
+                            </h1>
+                            <hr class="line-seprate">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END WELCOME-->
+
+            <!-- STATISTIC-->
+            <section class="statistic statistic2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item statistic__item--green">
+                                <h2 class="number">{{ plantype }}</h2>
+                                <span class="desc">Current Plan</span>
+                                <div class="icon">
+                                    <i class="zmdi zmdi-account-o"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item statistic__item--orange">
+                                <h2 class="number">{{ RowsConsumed }}</h2>
+                                <span class="desc">Total Credits Consumed</span>
+                                <div class="icon">
+                                    <i class="zmdi zmdi-shopping-cart"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item statistic__item--blue">
+                                <h2 class="number" id = "crdtrmn">{{ total_credits }}</h2>
+                                <span class="desc">Credits Remain</span>
+                                <div class="icon">
+                                    <i class="zmdi zmdi-calendar-note"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item statistic__item--red">
+                                <h2 class="number">₹ {{ total_spend }}</h2>
+                                <span class="desc">total spend</span>
+                                <div class="icon">
+                                    <i class="zmdi zmdi-money"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END STATISTIC-->
+
+            <!-- STATISTIC CHART-->
+            <section class="statistic-chart">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="title-5 m-b-35">statistics</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4">
+                            <!-- CHART-->
+                            <div class="statistic-chart-1">
+                                <h3 class="title-3 m-b-30">chart</h3>
+                                <div class="chart-wrap">
+                                    <canvas id="widgetChart5"></canvas>
+                                </div>
+                                <div class="statistic-chart-1-note">
+                                    <span class="big">10,368</span>
+                                    <span>/ 16220</span>
+                                </div>
+                            </div>
+                            <!-- END CHART-->
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <!-- TOP CAMPAIGN-->
+                            <div class="top-campaign">
+                                <h3 class="title-3 m-b-30">recent credit consumed</h3>
+                                <div class="table-responsive">
+                                    <table class="table table-top-campaign">
+                                        <tbody>
+                                        {% for i in search_info %}
+                                            <tr>
+                                                <td>{{ i.searchdate }}</td>
+                                                <td>{{ i.totalentries |div:10 }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- END TOP CAMPAIGN-->
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <!-- CHART PERCENT-->
+                            <div class="chart-percent-2">
+                                <input id = "d1" value = {{ crdtrmnprcnt }} type = "hidden"></input>
+                                <input id = "d2" value = "80" type = "hidden"></input>
+                                <h3 class="title-3 m-b-30">Credit by %</h3>
+                                <div class="chart-wrap">
+                                    <canvas id="percent-chart2"></canvas>
+                                    <div id="chartjs-tooltip">
+                                        <table></table>
+                                    </div>
+                                </div>
+                                <div class="chart-info">
+                                    <div class="chart-note">
+                                        <span class="dot dot--blue"></span>
+                                        <span>Remain</span>
+                                    </div>
+                                    <div class="chart-note">
+                                        <span class="dot dot--red"></span>
+                                        <span>Consume</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END CHART PERCENT-->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END STATISTIC CHART-->
+
+            <!-- DATA TABLE-->
+            <section class="p-t-20">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="title-5 m-b-35">Search History</h3>
+                            </div>
+                            <div class="table-responsive table-responsive-data2">
+                                <table class="table table-data2">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Sr no.</th>
+                                            <th>Time</th>
+                                            <th>Date Range</th>
+                                            <th>Keyword</th>
+                                            <th>Source</th>
+                                            <th>Tags</th>
+                                            <th>Category</th>
+                                            <th>Total Enteries</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    {% for i in search_info %}
+                                        <tr class="tr-shadow">
+                                            <td>
+                                                {{ forloop.counter }}
+                                            </td>
+                                            <td>{{ i.searchdate }}</td>
+                                            <td>
+                                                <span class="block-email">{{ i.daterange }}</span>
+                                            </td>
+                                            <td class="desc">{{ i.keyword }}</td>
+                                            <td>{{ i.source }}</td>
+                                            <td>
+                                                <span class="status--process">{{ i.tags }}</span>
+                                            </td>
+                                            <td>{{ i.category }}</td>
+                                            <td>
+                                                <div class="table-data-feature">
+                                                   {{ i.totalentries }}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="spacer"></tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END DATA TABLE-->
+
+            <!-- COPYRIGHT-->
+            
+            <!-- END COPYRIGHT-->
+        </div>
+
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="{% static 'vendor/jquery-3.2.1.min.js'%}"></script>
+    <!-- Bootstrap JS-->
+    <script src="{% static 'vendor/bootstrap-4.1/popper.min.js'%}"></script>
+    <script src="{% static 'vendor/bootstrap-4.1/bootstrap.min.js'%}"></script>
+    <!-- Vendor JS       -->
+    <script src="{% static 'vendor/slick/slick.min.js'%}">
+    </script>
+    <script src="{% static 'vendor/wow/wow.min.js'%}"></script>
+    <script src="{% static 'vendor/animsition/animsition.min.js'%}"></script>
+    <script src="{% static 'vendor/bootstrap-progressbar/bootstrap-progressbar.min.js'%}">
+    </script>
+    <script src="{% static 'vendor/counter-up/jquery.waypoints.min.js'%}"></script>
+    <script src="{% static 'vendor/counter-up/jquery.counterup.min.js'%}">
+    </script>
+    <script src="{% static 'vendor/circle-progress/circle-progress.min.js'%}"></script>
+    <script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.js'%}"></script>
+    <script src="{% static 'vendor/chartjs/Chart.bundle.min.js'%}"></script>
+    <script src="{% static 'vendor/select2/select2.min.js'%}">
+    </script>
+
+    <!-- Main JS-->
+    <script src="{% static 'js/main.js'%}"></script>
+
+</body>
+
+</html>
+<!-- end document-->

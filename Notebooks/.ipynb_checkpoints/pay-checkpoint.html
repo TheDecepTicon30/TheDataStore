@@ -1,0 +1,116 @@
+{% extends 'indexbase.html' %}
+{% block content %}
+<style type="text/css">
+	section {
+		display: flex;
+		flex-flow: row wrap;
+	}
+	section > div {
+		flex: 1;
+		padding: 0.5rem;
+	}
+	input[type="radio"] {
+		display: none;
+		&:not(:disabled) ~ label {
+			cursor: pointer;
+		}
+		&:disabled ~ label {
+			color: hsla(150, 5%, 75%, 1);
+			border-color: hsla(150, 5%, 75%, 1);
+			box-shadow: none;
+			cursor: not-allowed;
+		}
+	}
+	label {
+		height: 100%;
+		display: block;
+		background: white;
+		border: 2px solid hsla(150, 75%, 50%, 1);
+		border-radius: 20px;
+		padding: 1rem;
+		margin-bottom: 1rem;
+		text-align: center;
+		box-shadow: 0px 3px 10px -2px hsla(150, 5%, 65%, 0.5);
+		position: relative;
+	}
+	
+	input[type="radio"]#control_05:checked + label {
+		background: red;
+		border-color: red;
+	}
+
+	@media only screen and (max-width: 700px) {
+		section {
+			flex-direction: column;
+		}
+	}
+</style>
+<div id ="content-wrapper">
+	<div class="container-fluid">
+		<div class="card mb-3">
+			<ol class="breadcrumb">
+			      <li class="breadcrumb-item">
+			        <a href="#">Payment Plans</a>
+			      </li>
+			</ol>
+			<div class="card-body">
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6">
+								<section>
+									<div>
+										<input type="radio" id="control_01" name="select" value="1">
+										<label for="control_01">
+											<h2>Basic</h2>
+											<p>Information about basic plan</p>
+											<div><a href='https://www.payumoney.com/paybypayumoney/#/98F616D7D347A67B06E450B9D4B01BD7'><button class="btn btn-primary">Pay Now</button></a></div>       
+										</label>
+									</div>
+									<div>
+										<input type="radio" id="control_03" name="select" value="3" checked="true">
+										<label for="control_03">
+											<h2>Professional</h2>
+											<p>Information about professional plan</p>
+											<div><a href='https://www.payumoney.com/paybypayumoney/#/7683654469B98894C68216160110C9AC'><button class="btn btn-primary">Pay Now</button></a></div> 
+										</label>
+									</div>
+									<div>
+										<input type="radio" id="control_03" name="select" value="3" checked="true">
+										<label for="control_01">
+											<h2>Free Plan</h2>
+											<p>Information about Free plan</p>
+		                                    <form action = "{% url "freepln" %}" method = "post">
+                             {% csrf_token %}
+                                 <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#CreditModal">Activate Plan</button>
+                             </form> 
+										</label>
+									</div>
+								</section>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Logout Modal-->        
+        <div class="modal fade" id="CreditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Total Credits Added</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">{{Credits_Get}}</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,180 @@
+{% extends 'indexbase.html' %}
+{% block content %}
+<style type="text/css">
+.pricingTable{
+    text-align: center;
+    background: #e3e3e3;
+    border-color: black;
+    border-radius:10px;
+    border-width:5px;
+    transition: all 0.3s ease 0s;
+}
+.pricingTable:hover{
+    background: #f95b34;
+}
+.pricingTable .pricingTable-header{
+    padding: 25px 0;
+    color: black;
+    transition: all 0.3s ease 0s;
+}
+.pricingTable:hover .pricingTable-header{
+    color: black;
+}
+.pricingTable .icon{
+    display: block;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+.pricingTable .title{
+    display: block;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+}
+.pricingTable .price-value{
+    display: inline-block;
+    font-size: 50px;
+    position: relative;
+}
+.pricingTable .currency{
+    font-size: 25px;
+    position: absolute;
+    top: 13px;
+    left: -19px;
+}
+.pricingTable .month{
+    font-size: 20px;
+    position: absolute;
+    top: 32px;
+    right: -65px;
+}
+.pricingTable .pricing-content{
+    padding: 20px 20px;
+    background: #222;
+    border-radius: 30px 30px 0 0;
+    color: #fff;
+}
+.pricingTable .pricing-content ul{
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+}
+.pricingTable .pricing-content ul li{
+    font-size: 14px;
+    line-height: 40px;
+}
+.pricingTable .pricingTable-signup{
+    display: inline-block;
+    padding: 8px 40px;
+    border-radius: 30px;
+    border: 1px solid #595555;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    transition: all 0.5s ease 0s;
+}
+.pricingTable .pricingTable-signup:hover{
+    background: #f95b34;
+    border-color: #f95b34;
+    color: #222;
+}
+@media only screen and (max-width: 990px){
+    .pricingTable{ margin-bottom: 30px; }
+}
+</style>
+<div id ="content-wrapper">
+	<div class="container-fluid">
+		{% if messages %}
+		{% for message in messages %}
+		<div class="alert alert-danger"{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+		</div>
+		{% endfor %}
+		{% endif %}
+		<div class="container-fluid">
+			<div class="card mb-3">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						Payment Plans
+					</li>
+				</ol>
+				
+								<section id="pricing_plan" style="width:85%;padding-left:12%">
+									<div class="demo">
+										<div class="container">
+											<div class="row">
+												<div class="col-md-4 col-sm-6">
+													<div class="pricingTable">
+														<div class="pricingTable-header">
+															<span class="icon"><i class="fa fa-globe"></i></span>
+															<h3 class="title">Free Tier</h3>
+															<div class="price-value">
+																<span class="currency">₹</span>0
+																<span class="month">/month</span>
+															</div>
+														</div>
+														<div class="pricing-content">
+															<ul>
+                                                                <li>500 Credits</li>
+                                                                <li><i class="fa fa-close"></i>&nbsp Live API</li>
+																<li><i class="fa fa-close"></i>&nbsp 24x7 Support</li>
+															</ul>
+															<form action = "{% url "freepln" %}" method = "post">
+                                                             {% csrf_token %}
+                                 <button type="submit" class="pricingTable-signup btn-dark">Activate NOW!</button>
+                                                                 </form>
+
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4 col-sm-6">
+													<div class="pricingTable">
+														<div class="pricingTable-header">
+															<span class="icon"><i class="fa fa-briefcase"></i></span>
+															<h3 class="title">Business</h3>
+															<div class="price-value">
+																<span class="currency">₹</span>100
+																<span class="month">/month</span>
+															</div>
+														</div>
+														<div class="pricing-content">
+															<ul>
+																<li>10000 Credits</li>
+                                                                <li><i class="fa fa-check"></i>&nbsp Live API</li>
+																<li><i class="fa fa-close"></i>&nbsp 24x7 Support</li>
+															</ul>
+															<a href='https://www.payumoney.com/paybypayumoney/#/98F616D7D347A67B06E450B9D4B01BD7' class="pricingTable-signup btn-dark">Pay Now</a>
+														</div>
+													</div>
+												</div>
+                                                <div class="col-md-4 col-sm-6">
+													<div class="pricingTable">
+														<div class="pricingTable-header">
+															<span class="icon"><i class="fa fa-rocket"></i></span>
+															<h3 class="title">Premium</h3>
+															<div class="price-value">
+																<span class="currency">₹</span>500
+																<span class="month">/month</span>
+															</div>
+														</div>
+														<div class="pricing-content">
+															<ul>
+																<li>Unlimited* Credits</li>
+                                                                <li><i class="fa fa-check"></i>&nbsp Live API</li>
+																<li><i class="fa fa-check"></i>&nbsp 24x7 Support</li>
+															</ul>
+															<a href="#" class="pricingTable-signup btn-dark">Pay Now</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</section>
+                <br><br>
+
+			</div>
+		</div>
+	</div>
+
+
+	{% endblock %}

@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="text-center">
+                <i class="fa fa-search-plus pull-left icon"></i>
+                <h2>Invoice for purchase {{ txnid }}</h2>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12 col-md-3 col-lg-3 pull-right">
+                    <div class="panel panel-default height">
+                        <div class="panel-heading">Shipping Address</div>
+                        <div class="panel-body">
+                            <strong>{{ username }}</strong><br>
+                            <strong>{{ address }}</strong><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="text-center"><strong>Order summary</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table style="border: 1px solid black" rules="rows">
+                            <thead>
+                                    <tr style="border: 1px solid black">
+                                        <th>Fields</th>
+                                        <th>Your Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: solid 1px black;">
+                                        <td data-title="Fields">Status of Transaction</td>
+                                        <td data-title="Your Details">{{ status }}</td>
+                                    </tr>
+                                    <tr style="border-bottom: solid 1px black;">
+                                        <td data-title="Fields">TransactionID</td>
+                                        <td data-title="Your Details">{{ txnid }}</td>
+                                    </tr>
+                                    <tr style="border-bottom: solid 1px black;">
+                                        <td data-title="Fields">Username</td>
+                                        <td data-title="Your Details">{{ username }}</td>
+                                    </tr>
+                                    <tr style="border-bottom: solid 1px black;">
+                                        <td data-title="Fields">Firstname</td>
+                                        <td data-title="Your Details">{{ firstname }}</td>
+                                    </tr>
+                                    <tr style="border-bottom: solid 1px black;">
+                                        <td data-title="Fields">Amount</td>
+                                        <td data-title="Your Details">{{ amount }}</td>
+                                    </tr>
+                                    <tr style="border-bottom: solid 1px black;">
+                                        <td data-title="Fields">Product Information</td>
+                                        <td data-title="Your Details">{{ productinfo }}</td>
+                                    </tr>
+                                    <tr style="border-bottom: solid 1px black;">
+                                        <td data-title="Fields">EmailID</td>
+                                        <td data-title="Your Details">{{ email }}</td>
+                                    </tr>
+                                    <tr style="border-bottom: solid 1px black;">
+                                        <td data-title="Fields">Phone Number</td>
+                                        <td data-title="Your Details">{{ phone }}</td>
+                                    </tr>
+                                </tbody>
+                        </table>
+                    </div>
+                    <button onclick="window.print(); return false;">Print</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+{% extends 'indexbase.html' %}
+{% block content %}
+
+{% load static %}
+<div id ="content-wrapper">
+    <div class="container-fluid">
+		{% if messages %}
+		    {% for message in messages %}
+		    <div class="alert alert-danger"{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+			</div>
+		    {% endfor %}
+		{% endif %}
+	<div class="container-fluid">
+		<div class="card mb-3">
+			<div class="card-header">Generate API Key</div>
+			<div class="card-body">
+				<form action = "{% url 'genapi' %}" method = "post">
+					{% csrf_token %}
+					<input name='usrname' value={{user.username}} type="hidden"/>
+					<button type = "submit" class="btn btn-primary" value = "Generate API KEY" >Generate API KEY</button>
+				</div>
+				<br>
+				<div class="card bg-light text-dark">
+					<div class="card-body">API Key : {{ api_k }}</div>
+				</div>
+			</form>
+		</div>
+
+<div class="card mb-3">
+      <div class="card-header ">
+        <i class="fas fa-table"></i>
+      API Keys</div>
+
+      <div class = "card-body">
+        <div class = "table-responsive">
+          <table class = "table table-bordered" id = "dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>API Key</th>
+                <th>Validity</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              {% for usr in usr_inf %}
+              <tr>
+                <td>{{ usr.Date }}</td>
+                <td>{{ usr.ApiKey }}</td>
+                <td>{{ usr.expiryDate }}</td>
+                <td></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    	</div>
+</div>
+{% endblock content %}

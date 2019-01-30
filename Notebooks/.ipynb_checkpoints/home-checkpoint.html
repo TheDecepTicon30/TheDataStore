@@ -1,0 +1,174 @@
+{% extends 'indexbase.html' %}
+
+
+
+    
+{% block content %}
+
+{% if user.is_authenticated %}
+<script>
+    function CopytoClipboard() {
+  /* Get the text field */
+  var copyText = document.getElementById("API_url");
+
+  /* Select the text field */
+  copyText.select();
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
+}
+</script>
+<div id ="content-wrapper">
+    <div class="container-fluid">
+       
+        <!--Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Api</a>
+            </li>
+        </ol>
+        
+        
+        
+        <div class="card mb-3">
+            <div class="card-header">Generate API
+            </div>
+            <div class="card-body">
+              <form action = "{% url "apicheck" %}" method = "post">
+              {% csrf_token %}
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                    <input type="text" name = "ApiKey" id="Api_key" class="form-control" placeholder="Api Key"  autofocus="autofocus">
+                    <label for="Api_key">ApiKey</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                    <input type="text" name = "word" id="Search_Word" class="form-control" placeholder="Title word">
+                    <label for="Search_Word">Search Word</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+                  
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                    <input type="text" name = "incat" id="in_cat" class="form-control" placeholder="in cat"  autofocus="autofocus">
+                    <label for="in_cat">Category</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                    <input type="text" name = "intag" id="in_tag" class="form-control" placeholder="in tag" >
+                    <label for="in_tag">Tags</label>
+                  </div>
+                </div>
+              </div>
+            </div>  
+            
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                    <input type="date" name="startdate" max="2020-12-31" min="2014-01-01" class="form-control" id = "Start_Date" required>
+                    <label for="Start_Date">Start Date</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                    <input type="date" name="enddate" min="2014-12-31" max="2020-12-31" class="form-control" id = "End_Date" required>
+                    <label for="End_Date">End Date</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                      <select class="form-control" id="in_source" name="insrce">
+                          <option>All Sources</option>
+                          <option>India Today</option>
+                          <option>Bloomberg Quint</option>
+                          <option>Economic Times</option>
+                          <option>Livemint</option>
+                          <option>Business Standard</option>
+                          <option>Money Control</option>
+                          <option>Ndtv</option>
+                          <option>The Quint</option>
+                          <option>Times of India</option>
+                          <option>News18</option>
+                          <option>Rueters</option>
+                          <option>Hindustan Times</option>
+                          <option>The Hindu</option>
+                          <option>IIFL</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+            </div>
+              <button class="btn  bg-info btn-primary btn-block" type = "submit" value = "Generate API">Generate API</button>
+                  </form>
+                  <br>
+                      <div class="card bg-light text-dark">
+                        <input id="API_url" value = {{ acs_k }}><div class="btn-group btn-group-sm float-right">
+                            <button type="button" class="btn btn-primary" onclick="CopytoClipboard()">Copy API</button>&nbsp                          <form action = "{% url "dwnldcsv" %}" method = "post">
+                             {% csrf_token %}
+                                 <button type="submit" class="btn btn-primary">Downlaod CSV</button>
+                             </form>
+                        </div>
+                  </div>
+        </div>
+      </div>
+<br/>
+
+<div class="card mb-3">
+    <div class="card-header ">
+        <i class="fas fa-table"></i>
+        Sample News Data <p class = "float-right">Total Entries : {{ totalval }}</p></div>
+    
+    <div class = "card-body">
+        <div class = "table-responsive">
+            <table class = "table table-bordered" id = "dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Source</th>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Source</th>
+                        <th>Title</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                {% for r_find in r_finds %}
+                    <tr>
+                        <td>{{ r_find.Date }}</td>
+                        <td>{{ r_find.Category }}</td>
+                        <td>{{ r_find.Source }}</td>
+                        <td>{{ r_find.Title }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+       {% else %}
+        You are not Logged in, Please <a href = {% url 'login' %}> &nbsp Login</a>
+{% endif %} 
+        
+        {% endblock content %}
