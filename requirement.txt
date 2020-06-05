@@ -30,7 +30,7 @@ cycler==0.10.0
 cyordereddict==1.0.0
 Cython==0.28.5
 decorator==4.3.0
-Django==2.0.6
+Django==2.2.13
 django-capture-tag==1.0
 django-mathfilters==0.4.0
 docutils==0.14
