@@ -114,7 +114,7 @@ python-utils==2.3.0
 pythonnet==2.3.0
 pytz==2018.4
 pywinpty==0.5.4
-PyYAML==3.12
+PyYAML==5.4
 pyzmq==17.0.0
 Quandl==3.4.1
 quantconnect==0.1
