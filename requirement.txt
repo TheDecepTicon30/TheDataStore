@@ -103,7 +103,7 @@ pycparser==2.18
 pyexcel==0.5.8
 pyexcel-io==0.5.7
 Pygments==2.2.0
-PyJWT==1.7.1
+PyJWT==2.4.0
 pymongo==3.7.2
 pyOpenSSL==18.0.0
 pyparsing==2.2.0
