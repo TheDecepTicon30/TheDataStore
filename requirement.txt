@@ -82,7 +82,7 @@ nodejs==0.1.1
 notebook==5.5.0
 npm==0.1.1
 numexpr==2.6.6
-numpy==1.14.5
+numpy==1.22.0
 oandapy==0.1
 oandapyV20==0.6.3
 opencv-python==3.4.1.15
