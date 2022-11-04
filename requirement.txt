@@ -146,7 +146,7 @@ tornado==5.0.2
 tqdm==4.30.0
 trading-calendars==1.1.0
 traitlets==4.3.2
-Twisted==17.9.0
+Twisted==22.10.0
 txaio==2.10.0
 tzlocal==1.5.1
 ujson==1.35
